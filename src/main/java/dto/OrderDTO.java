@@ -11,22 +11,36 @@ public class OrderDTO {
 
     private long id;
 
-    /** 订单的用户 **/
+    /**
+     * 订单的用户
+     **/
     private UserDTO user;
 
-    /** 订单的商品 **/
+    /**
+     * 订单的商品
+     **/
     private ItemDTO item;
 
-    /** 用户买了多少件商品 **/
+    /**
+     * 商品被购买时的单价
+     **/
+    private double unitPrice;
+
+    /**
+     * 用户买了多少件商品
+     **/
     private int quantity;
 
-    /** 订单总金额 **/
+    /**
+     * 订单总金额
+     **/
     private double totalAmount;
 
     public OrderDTO(OrderEntity orderEntity, UserDTO user, ItemDTO item) {
         this.id = orderEntity.getId();
         this.user = user;
         this.item = item;
+        this.unitPrice = orderEntity.getUnitPrice();
         this.quantity = orderEntity.getQuantity();
         this.totalAmount = orderEntity.getTotalAmount();
     }
@@ -69,5 +83,13 @@ public class OrderDTO {
 
     public void setTotalAmount(double totalAmount) {
         this.totalAmount = totalAmount;
+    }
+
+    public double getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(double unitPrice) {
+        this.unitPrice = unitPrice;
     }
 }
