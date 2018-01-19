@@ -10,15 +10,15 @@ import java.lang.reflect.Type;
  */
 public class Proxy<T> {
 
+    private Class<T> clazz;
 
-
-
-//    public T getById(long id) {
-//        Type mySuperClass = this.getClass();
-//        Type type = (Class<T>)((ParameterizedType)mySuperClass).getActualTypeArguments()[0];
-//        System.out.println(type);
-//        return null;
-//    }
+    public T getById(long id) {
+        Type t=this.getClass().getGenericSuperclass();
+        //获取泛型参数的实际类型
+        this.clazz=(Class<T>)((ParameterizedType)t).getActualTypeArguments()[0];
+        System.out.println(clazz);
+        return null;
+    }
 
     public static void main(String[] args) {
         new Proxy<String>().getById(1L);
